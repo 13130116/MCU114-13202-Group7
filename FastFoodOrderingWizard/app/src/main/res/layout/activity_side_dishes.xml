@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".SideDishesActivity">
+
+    <TextView
+        android:id="@+id/tvChooseSideDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Side Dishes:"
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp"/>
+
+    <CheckBox
+        android:id="@+id/cbFries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fries" />
+
+    <CheckBox
+        android:id="@+id/cbSalad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salad" />
+
+    <CheckBox
+        android:id="@+id/cbCornCup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Corn Cup" />
+
+    <Button
+        android:id="@+id/btnConfirmSideDish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

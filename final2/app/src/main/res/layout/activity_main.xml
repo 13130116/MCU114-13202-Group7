@@ -8,6 +8,7 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <!-- 上面的標題、輸入框和按鈕都保持不變 -->
     <TextView
         android:id="@+id/textView_title"
         android:layout_width="wrap_content"
@@ -57,5 +58,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 🧹 我們把瓶子的位置改到您指定的地方了！ 🧹 -->
+    <ImageView
+        android:id="@+id/imageView_bottle"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/bottle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_save_mood"
+        app:layout_constraintBottom_toTopOf="@+id/button_view_history" />
 
+    <!-- 「心情光點」保持不變 -->
+    <ImageView
+        android:id="@+id/imageView_sparkle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/sparkle"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,10 @@
 plugins {
+    // build.gradle.kts (Module :app)
+
+
+        id("com.google.devtools.ksp") version "1.9.22-1.0.17" // 檢查或加上這行
+
+
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
@@ -36,6 +42,15 @@ android {
 }
 
 dependencies {
+    // build.gradle.kts (Module :app)
+
+
+        // --- ↓↓ 把下面這幾行加進去 ↓↓ ---
+        val room_version = "2.6.1"
+        implementation("androidx.room:room-runtime:$room_version")
+        ksp("androidx.room:room-compiler:$room_version") // 注意這裡是 ksp
+        implementation("androidx.room:room-ktx:$room_version")
+        // --- ↑↑ 加到這裡 ↑↑ ---
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

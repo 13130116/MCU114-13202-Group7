@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- 1. 標題文字 -->
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今天的心情如何？"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <!-- 2. 輸入心情的框框 -->
+    <EditText
+        android:id="@+id/editText_mood"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:hint="在這裡寫下你的心情..."
+        android:gravity="top"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/textView_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <!-- 3. 儲存按鈕 -->
+    <Button
+        android:id="@+id/button_save_mood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="裝進情緒瓶"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/editText_mood"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <!-- 4. 瓶子圖片 (稍微縮小一點高度，讓下面放得下新功能) -->
+    <ImageView
+        android:id="@+id/imageView_bottle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/bottle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_save_mood"
+        app:layout_constraintBottom_toTopOf="@+id/switch_reminder"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 5. 【新功能】提醒開關 -->
+    <Switch
+        android:id="@+id/switch_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="每日提醒我紀錄  "
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_usage_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- 6. 【新功能】顯示上次使用時間 -->
+    <TextView
+        android:id="@+id/textView_usage_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="上次停留時間：..."
+        android:textColor="#888888"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_view_history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 7. 查看歷史按鈕 (貼底) -->
+    <Button
+        android:id="@+id/button_view_history"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="查看過去的瓶子"
+        style="?attr/materialButtonOutlinedStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 心情光點特效 -->
+    <ImageView
+        android:id="@+id/imageView_sparkle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/sparkle"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

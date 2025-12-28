@@ -15,7 +15,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // 1. 連結佈局檔案 (這是最關鍵的一步)
+        // 1.建資料
         setContentView(R.layout.activity_login)
 
         // 為根視圖設置 Padding 以避免與系統欄重疊
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             val password = passwordInput.text.toString()
 
             // 4. 簡單的登入驗證
-            // 我們暫時設定，只要帳號和密碼不是空白，就當作登入成功
+            // 暫時設定，只要帳號和密碼不是空白，就當作登入成功
             if (username.isNotBlank() && password.isNotBlank()) {
                 // 登入成功
                 Toast.makeText(this, "登入成功！", Toast.LENGTH_SHORT).show()

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 選項一：查看過去的瓶子 -->
+    <!-- 我幫它加上了一個「歷史」的時鐘圖案 -->
+    <item
+        android:id="@+id/menu_view_history"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="查看過去的瓶子" />
+
+    <!-- 選項二：提供意見回饋 -->
+    <!-- 我幫它加上了一個「寄信」的信封圖案 -->
+    <item
+        android:id="@+id/menu_feedback"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="提供意見回饋" />
+
+    <!-- 選項三：鼓勵過去的自己 -->
+    <!-- 我幫它加上了一個「愛心」或「星星」的圖案 -->
+    <item
+        android:id="@+id/menu_encourage"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="鼓勵過去的自己" />
+
+</menu>

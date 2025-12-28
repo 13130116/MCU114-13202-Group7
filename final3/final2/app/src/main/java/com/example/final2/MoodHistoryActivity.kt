@@ -2,66 +2,42 @@ package com.example.final2
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
-
-import com.example.final2.AppDatabase
-import com.example.final2.Mood
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.lifecycleScope // ★★★ 這裡我們改用一個比較新的、更安全的方法
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MoodHistoryActivity : AppCompatActivity() {
-
-    private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mood_history)
 
-        // 初始化資料庫
-        db = AppDatabase.getDatabase(this)
-
-        val historyTextView: TextView = findViewById(R.id.history_text_view)
-
-        // 呼叫顯示歷史紀錄的函式
-        loadAndShowHistory(historyTextView)
-
-        // 設定返回按鈕
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view_history)
         val backButton: Button = findViewById(R.id.button_back)
+
+        // 設定 RecyclerView 的排列方式 (垂直排列)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // 讀取資料並顯示
+        loadAndShowHistory(recyclerView)
+
         backButton.setOnClickListener {
-            finish() // 關閉目前頁面，返回上一頁
+            finish() // 關閉這個頁面，返回主畫面
         }
     }
 
-    private fun loadAndShowHistory(textView: TextView) {
-        // 使用 Coroutine 在背景執行緒讀取資料庫，避免卡住畫面
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun loadAndShowHistory(recyclerView: RecyclerView) {
+        // 使用 lifecycleScope 可以更安全地在背景執行緒讀取資料庫
+        // 它會跟著這個畫面的生命週期，畫面關閉時，它也會自動停止，比較不會出錯
+        lifecycleScope.launch {
+            val db = AppDatabase.getDatabase(applicationContext)
+            // .reversed() 可以讓最新的紀錄顯示在最上面
+            val moodList = db.moodDao().getAllMoods().reversed()
 
-            // 從資料庫讀取所有心情
-            // 如果 getAllMoods() 還是紅字，請確認您的 MoodDao.kt 是否有改好 (回傳 List<Mood>)
-            val moodList = db.moodDao().getAllMoods()
-
-            val historyText = StringBuilder()
-
-            if (moodList.isEmpty()) {
-                historyText.append("目前沒有任何心情紀錄喔！快去首頁新增吧。")
-            } else {
-                // 遍歷每一筆心情資料
-                moodList.forEach { mood ->
-                    // 這裡把日期和心情內容串接起來
-                    historyText.append("📅 ${mood.date}\n")
-                    historyText.append("📝 ${mood.content}\n")
-                    historyText.append("-----------------\n\n")
-                }
-            }
-
-            // 切換回主執行緒 (Main Thread) 更新 UI
-            withContext(Dispatchers.Main) {
-                textView.text = historyText.toString()
-            }
+            // 把讀取到的資料交給 MoodAdapter，並讓 RecyclerView 顯示出來
+            recyclerView.adapter = MoodAdapter(this@MoodHistoryActivity, moodList)
         }
     }
 }

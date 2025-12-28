@@ -13,91 +13,144 @@
         android:id="@+id/textView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="今天的心情如何？"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 2. 輸入心情的框框 -->
     <EditText
         android:id="@+id/editText_mood"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:hint="在這裡寫下你的心情..."
-        android:gravity="top"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_background"
+        android:gravity="top"
+        android:hint="在這裡寫下你的心情..."
         android:padding="12dp"
         android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/textView_title"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_title" />
 
     <!-- 3. 儲存按鈕 -->
     <Button
         android:id="@+id/button_save_mood"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="裝進情緒瓶"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/editText_mood"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_mood" />
 
-    <!-- 4. 瓶子圖片 (稍微縮小一點高度，讓下面放得下新功能) -->
+    <!-- 心情圖案 -->
+    <LinearLayout
+        android:id="@+id/mood_icons_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_save_mood">
+        <!-- ... 心情圖標的設定 ... -->
+        <ImageView
+            android:id="@+id/icon_happy"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="開心"
+            android:padding="4dp"
+            android:src="@drawable/happy" />
+        <ImageView
+            android:id="@+id/icon_sad"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="難過"
+            android:padding="4dp"
+            android:src="@drawable/sad" />
+        <ImageView
+            android:id="@+id/icon_normal"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="普通"
+            android:padding="4dp"
+            android:src="@drawable/normal" />
+        <ImageView
+            android:id="@+id/icon_angry"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="生氣"
+            android:padding="4dp"
+            android:src="@drawable/angry" />
+        <ImageView
+            android:id="@+id/icon_shy"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:contentDescription="害羞"
+            android:padding="4dp"
+            android:src="@drawable/shy" />
+    </LinearLayout>
+
+    <!-- 瓶子圖片 -->
     <ImageView
         android:id="@+id/imageView_bottle"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/bottle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_save_mood"
-        app:layout_constraintBottom_toTopOf="@+id/switch_reminder"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/switch_reminder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mood_icons_layout"
+        app:srcCompat="@drawable/bottle" />
 
-    <!-- 5. 【新功能】提醒開關 -->
+    <!-- 提醒開關-->
     <Switch
         android:id="@+id/switch_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="每日提醒我紀錄  "
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView_usage_time"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="8dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 6. 【新功能】顯示上次使用時間 -->
+    <!-- 顯示上次使用時間 -->
     <TextView
         android:id="@+id/textView_usage_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="上次停留時間：..."
         android:textColor="#888888"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_view_history"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_more_options"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 7. 查看歷史按鈕 (貼底) -->
+    <!-- 更多功能，包含查看歷史紀錄和回饋 -->
     <Button
-        android:id="@+id/button_view_history"
+        android:id="@+id/button_more_options"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="查看過去的瓶子"
-        style="?attr/materialButtonOutlinedStyle"
+        android:layout_marginBottom="16dp"
+        android:text="更多功能"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- 心情光點特效 -->
     <ImageView
@@ -109,3 +162,4 @@
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
